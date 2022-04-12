@@ -17,8 +17,18 @@
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
-    "linebreak-style": ["error", "windows"],
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "arrow-parens": ["error", "as-needed"],
+    "max-len": ["error", 150],
+    "implicit-arrow-linebreak": "off",
+    "no-confusing-arrow": ["error", { "allowParens": true, "onlyOneSimpleParam": true }]
   },
   "settings": {
     "import/resolver": {
