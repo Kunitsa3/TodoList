@@ -1,11 +1,8 @@
 import React, { FC } from 'react';
 import { Box } from '@mui/material';
-import ToDoItem from '../ToDoItem';
 
-interface TaskInformation {
-  task: string;
-  date: Date;
-}
+import ToDoItem from '../ToDoItem';
+import { TaskInformation } from '../../types';
 
 interface ToDoListProps {
   tasksList: TaskInformation[];
@@ -14,11 +11,16 @@ interface ToDoListProps {
 
 const ToDoList: FC<ToDoListProps> = ({ tasksList, setTasksList }) => (
   <>
-    {tasksList.map((taskInformation, index) => (
-      <Box sx={{ display: 'flex' }} key={index}>
-        <ToDoItem label={taskInformation.task} setTasksList={setTasksList} index={index} date={taskInformation.date} />
-      </Box>
-    ))}
+    {tasksList
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .map(taskInformation => (
+        <Box sx={{ display: 'flex' }} key={taskInformation.id}>
+          <ToDoItem
+            taskInformation={taskInformation}
+            setTasksList={setTasksList}
+          />
+        </Box>
+      ))}
   </>
 );
 

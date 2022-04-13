@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react';
+
 import NewTaskField from './components/NewTaskField';
 import ToDoList from './components/ToDoList';
-
-interface TaskInformation {
-  task: string;
-  date: Date;
-}
+import { TaskInformation } from './types';
 
 const App = () => {
   const [tasksInformation, setTasksInformation] = useState<TaskInformation[]>(

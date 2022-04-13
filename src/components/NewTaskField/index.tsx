@@ -1,26 +1,25 @@
 import React, { FC, useState } from 'react';
-
 import AddIcon from '@mui/icons-material/Add';
 import { Box, TextField } from '@mui/material';
 
-interface TaskInformation {
-  task: string;
-  date: Date;
-}
+import { TaskInformation } from '../../types';
+import createTaskInformation from '../../helpers';
 
 interface NewTaskFieldProps {
   setTasksList: React.Dispatch<React.SetStateAction<TaskInformation[]>>;
 }
 
 const NewTaskField: FC<NewTaskFieldProps> = ({ setTasksList }) => {
-  const [newTask, setNewTask] = useState('');
+  const [newTask, setNewTask] = useState<string>('');
 
-  const onTaskInputChange: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement> = e => {
-    setNewTask(e.target.value);
+  const onTaskInputChange: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement> = ({
+    target: { value },
+  }) => {
+    setNewTask(value);
   };
 
   const onAddNewTaskClick = () => {
-    setTasksList(oldTasksList => [...oldTasksList, { task: newTask, date: new Date() }]);
+    setTasksList(oldTasksList => [...oldTasksList, createTaskInformation(newTask)]);
     setNewTask('');
   };
 
