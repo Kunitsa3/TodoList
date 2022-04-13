@@ -3,7 +3,12 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["plugin:react/recommended", "airbnb"],
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -31,14 +36,17 @@
     "no-confusing-arrow": ["error", { "allowParens": true, "onlyOneSimpleParam": true }],
     "object-curly-newline": ["error", { "consistent": true, "multiline": true }],
     "function-paren-newline": ["error", "multiline-arguments"],
-    "no-plusplus": "off"
+    "no-plusplus": "off",
+    "operator-linebreak": [2, "after"],
+    "import/prefer-default-export": "off"
   },
   "settings": {
     "import/resolver": {
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"],
         "path": ["src"]
-      }
+      },
+      "typescript": {}
     }
   }
 }

@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Box } from '@mui/material';
 
-import { TaskInformation } from '../../types';
+import { TaskInformation } from 'types';
 import ViewToDoItem from './ViewToDoItem';
 import EditToDoItem from './EditToDoItem';
 

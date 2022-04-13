@@ -10,9 +10,6 @@ module.exports = {
   entry: ['./index.tsx'],
   output: { filename: '[contenthash].js', path: path.resolve(__dirname, 'dist') },
   resolve: {
-    alias: {
-      '@components': path.resolve(__dirname, 'src/components'),
-    },
     extensions: ['.js', '.jsx', '.tsx', '.ts'],
   },
   devServer: {

@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
-import { Edit } from '@mui/icons-material';
-import { Box, Checkbox, FormControlLabel, FormGroup } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+import React, { FC, useState } from 'react';
+import { Box, Checkbox, FormGroup } from '@mui/material';
 
-import { TaskInformation } from '../../../types';
+import { TaskInformation } from 'types';
+import { getDate } from 'helpers';
+import { CloseToDoItemIcon, DateInformation, EditToDoItemIcon, TaskDetailsWrapper, TaskForm, TaskFormWrapper } from './styled';
 
 interface ViewToDoItemProps {
   taskInformation: TaskInformation;
@@ -12,27 +12,40 @@ interface ViewToDoItemProps {
 }
 
 const ViewToDoItem: FC<ViewToDoItemProps> = ({ changeEditState, setTasksList, taskInformation: { task, id, date } }) => {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleChange: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void = (_, checked) => {
+    setIsChecked(checked);
+  };
+
   const onDeleteIconClick = () => {
     setTasksList(oldTasksList => oldTasksList.filter(taskDetails => taskDetails.id !== id));
   };
 
   return (
-    <Box>
-      <FormGroup>
-        <FormControlLabel
-          control={<Checkbox defaultChecked />}
-          label={task}
-          sx={{
-            color: 'dark blue',
-            '& .MuiFormControlLabel-label': { fontSize: '40px' },
-            '& .css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.Mui-checked': { color: 'green' },
-          }}
-        />
-      </FormGroup>
-      <Edit onClick={changeEditState} />
-      <CloseIcon onClick={onDeleteIconClick} />
-      <p>{date.toString()}</p>
-    </Box>
+    <TaskDetailsWrapper>
+      <TaskFormWrapper>
+        <FormGroup>
+          <TaskForm
+            isChecked={isChecked}
+            control={(
+              <Checkbox
+                checked={isChecked}
+                onChange={handleChange}
+              />
+)}
+            label={task}
+          />
+        </FormGroup>
+        <Box>
+          <EditToDoItemIcon onClick={changeEditState} />
+          <CloseToDoItemIcon onClick={onDeleteIconClick} />
+        </Box>
+
+      </TaskFormWrapper>
+
+      <DateInformation>{getDate(date)}</DateInformation>
+    </TaskDetailsWrapper>
   );
 };
 

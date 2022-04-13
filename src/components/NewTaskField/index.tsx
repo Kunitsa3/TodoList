@@ -1,9 +1,9 @@
 import React, { FC, useState } from 'react';
-import AddIcon from '@mui/icons-material/Add';
-import { Box, TextField } from '@mui/material';
 
-import { TaskInformation } from '../../types';
-import createTaskInformation from '../../helpers';
+import { TaskInformation } from 'types';
+import { createTaskInformation } from 'helpers';
+
+import { CustomizedAddIcon, NewTaskInput, NewTaskInputWrapper } from './styled';
 
 interface NewTaskFieldProps {
   setTasksList: React.Dispatch<React.SetStateAction<TaskInformation[]>>;
@@ -24,25 +24,20 @@ const NewTaskField: FC<NewTaskFieldProps> = ({ setTasksList }) => {
   };
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-      }}
-    >
-      <AddIcon
+    <NewTaskInputWrapper>
+      <CustomizedAddIcon
+        newTask={newTask}
         color="primary"
-        sx={newTask ? { visibility: 'visible' } : { visibility: 'hidden' }}
         onClick={onAddNewTaskClick}
       />
-      <TextField
+      <NewTaskInput
         id="input-with-sx"
         label="Add new task"
         variant="standard"
         value={newTask}
         onChange={onTaskInputChange}
       />
-    </Box>
+    </NewTaskInputWrapper>
   );
 };
 

@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Box, Button, TextField } from '@mui/material';
 
-import { TaskInformation } from '../../../types';
-import createTaskInformation from '../../../helpers';
+import { TaskInformation } from 'types';
+import { createTaskInformation } from 'helpers';
 
 interface EditToDoItemProps {
   editTask: string;
