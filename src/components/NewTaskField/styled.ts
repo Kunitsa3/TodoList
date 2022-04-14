@@ -9,7 +9,7 @@ export const NewTaskInputWrapper = styled(Box)({
 
 export const CustomizedAddIcon = styled(AddIcon, {
   shouldForwardProp: propName => propName !== 'newTask',
-})<{newTask: string}>(({
+})<{newTask: boolean}>(({
   newTask,
 }) => (
   {

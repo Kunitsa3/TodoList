@@ -1,4 +1,5 @@
-import React, { FC, useId, useState } from 'react';
+import React, { FC, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import { TaskInformation } from 'types';
 import { createTaskInformation } from 'helpers';
@@ -11,7 +12,7 @@ interface NewTaskFieldProps {
 
 const NewTaskField: FC<NewTaskFieldProps> = ({ setTasksList }) => {
   const [newTask, setNewTask] = useState<string>('');
-  const id = useId();
+  const id = uuidv4();
 
   const onTaskInputChange: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement> = ({
     target: { value },
@@ -35,7 +36,7 @@ const NewTaskField: FC<NewTaskFieldProps> = ({ setTasksList }) => {
   return (
     <NewTaskInputWrapper>
       <CustomizedAddIcon
-        newTask={newTask}
+        newTask={!!newTask}
         color="primary"
         onClick={onAddNewTaskClick}
       />
