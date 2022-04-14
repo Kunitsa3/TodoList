@@ -30,7 +30,7 @@ export const NewTaskInput = styled(TextField)({
     color: '#607d8b',
   },
   '& .MuiFormLabel-root': {
-    fontSize: '25px',
+    fontSize: '17px',
     color: '#1565c0',
   },
   '& .MuiInput-input': {
@@ -38,5 +38,10 @@ export const NewTaskInput = styled(TextField)({
     color: '#01579b',
     fontWeight: 500,
     fontSize: '15px',
+  },
+  '@media (min-width: 768px )': {
+    '& .MuiFormLabel-root': {
+      fontSize: '25px',
+    },
   },
 });

@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
-import { Box, Button, TextField } from '@mui/material';
+import { Button } from '@mui/material';
 
 import { TaskInformation } from 'types';
 import { createTaskInformation } from 'helpers';
+import { EditButtonsWrapper, EditTaskFieldWrapper, EditTaskInput } from './styled';
 
 interface EditToDoItemProps {
   editTask: string;
@@ -13,9 +14,10 @@ interface EditToDoItemProps {
 }
 
 const EditToDoItem: FC<EditToDoItemProps> = ({ editTask, setEditTask, setTasksList, changeEditState, id }) => {
-  const onEditTaskChange: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement> = ({ target: { value } }) => {
-    setEditTask(value);
-  };
+  const onEditTaskChange: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement> =
+   ({ target: { value } }) => {
+     setEditTask(value);
+   };
 
   const onSaveButtonClick: React.MouseEventHandler<HTMLButtonElement> = () => {
     setTasksList(oldTasksList =>
@@ -27,8 +29,9 @@ const EditToDoItem: FC<EditToDoItemProps> = ({ editTask, setEditTask, setTasksLi
   };
 
   return (
-    <Box>
-      <TextField
+    <EditTaskFieldWrapper>
+      <EditTaskInput
+        fullWidth
         hiddenLabel
         id="filled-hidden-label-small"
         variant="filled"
@@ -36,13 +39,15 @@ const EditToDoItem: FC<EditToDoItemProps> = ({ editTask, setEditTask, setTasksLi
         value={editTask}
         onChange={onEditTaskChange}
       />
-      <Button type="button" onClick={onSaveButtonClick}>
-        Save
-      </Button>
-      <Button type="button" onClick={changeEditState}>
-        Delete
-      </Button>
-    </Box>
+      <EditButtonsWrapper>
+        <Button type="button" size="small" onClick={onSaveButtonClick}>
+          Save
+        </Button>
+        <Button type="button" size="small" onClick={changeEditState}>
+          Cancel
+        </Button>
+      </EditButtonsWrapper>
+    </EditTaskFieldWrapper>
   );
 };
 

@@ -1,9 +1,16 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { Box, Checkbox, FormGroup } from '@mui/material';
 
 import { TaskInformation } from 'types';
 import { getDate } from 'helpers';
-import { CloseToDoItemIcon, DateInformation, EditToDoItemIcon, TaskDetailsWrapper, TaskForm, TaskFormWrapper } from './styled';
+import {
+  CloseToDoItemIcon,
+  DateInformation,
+  EditToDoItemIcon,
+  TaskDetailsWrapper,
+  TaskForm,
+  TaskFormWrapper,
+} from './styled';
 
 interface ViewToDoItemProps {
   taskInformation: TaskInformation;
@@ -11,42 +18,43 @@ interface ViewToDoItemProps {
   setTasksList: React.Dispatch<React.SetStateAction<TaskInformation[]>>;
 }
 
-const ViewToDoItem: FC<ViewToDoItemProps> = ({ changeEditState, setTasksList, taskInformation: { task, id, date } }) => {
-  const [isChecked, setIsChecked] = useState(false);
+const ViewToDoItem: FC<ViewToDoItemProps> =
+ ({ changeEditState, setTasksList, taskInformation: { task, id, date, isChecked } }) => {
+   const handleChange: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void = (_, checked) => {
+     setTasksList(oldTasksList => oldTasksList.map(
+       taskDetails => (taskDetails.id === id ? { ...taskDetails, isChecked: checked } : taskDetails),
+     ));
+   };
 
-  const handleChange: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void = (_, checked) => {
-    setIsChecked(checked);
-  };
+   const onDeleteIconClick = () => {
+     setTasksList(oldTasksList => oldTasksList.filter(taskDetails => taskDetails.id !== id));
+   };
 
-  const onDeleteIconClick = () => {
-    setTasksList(oldTasksList => oldTasksList.filter(taskDetails => taskDetails.id !== id));
-  };
-
-  return (
-    <TaskDetailsWrapper>
-      <TaskFormWrapper>
-        <FormGroup>
-          <TaskForm
-            isChecked={isChecked}
-            control={(
-              <Checkbox
-                checked={isChecked}
-                onChange={handleChange}
-              />
+   return (
+     <TaskDetailsWrapper>
+       <TaskFormWrapper>
+         <FormGroup>
+           <TaskForm
+             isChecked={isChecked}
+             control={(
+               <Checkbox
+                 checked={isChecked}
+                 onChange={handleChange}
+               />
 )}
-            label={task}
-          />
-        </FormGroup>
-        <Box>
-          <EditToDoItemIcon onClick={changeEditState} />
-          <CloseToDoItemIcon onClick={onDeleteIconClick} />
-        </Box>
+             label={task}
+           />
+         </FormGroup>
+         <Box>
+           <EditToDoItemIcon onClick={changeEditState} />
+           <CloseToDoItemIcon onClick={onDeleteIconClick} />
+         </Box>
 
-      </TaskFormWrapper>
+       </TaskFormWrapper>
 
-      <DateInformation>{getDate(date)}</DateInformation>
-    </TaskDetailsWrapper>
-  );
-};
+       <DateInformation>{getDate(date)}</DateInformation>
+     </TaskDetailsWrapper>
+   );
+ };
 
 export default ViewToDoItem;

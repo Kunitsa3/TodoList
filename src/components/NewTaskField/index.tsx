@@ -23,6 +23,14 @@ const NewTaskField: FC<NewTaskFieldProps> = ({ setTasksList }) => {
     setNewTask('');
   };
 
+  const onTaskInputKeyPress: React.KeyboardEventHandler<HTMLDivElement> = ({
+    key,
+  }) => {
+    if (key === 'Enter') {
+      onAddNewTaskClick();
+    }
+  };
+
   return (
     <NewTaskInputWrapper>
       <CustomizedAddIcon
@@ -35,6 +43,7 @@ const NewTaskField: FC<NewTaskFieldProps> = ({ setTasksList }) => {
         label="Add new task"
         variant="standard"
         value={newTask}
+        onKeyPress={onTaskInputKeyPress}
         onChange={onTaskInputChange}
       />
     </NewTaskInputWrapper>

@@ -10,12 +10,19 @@ export const TaskForm = styled(FormControlLabel, {
   {
     textDecoration: isChecked ? 'line-through' : 'none',
     '& .MuiTypography-root.MuiFormControlLabel-label': {
-      fontSize: '16px',
+      fontSize: 12,
     },
     '& .MuiCheckbox-root.Mui-checked': {
       color: '#01579b',
-      fontSize: '14px',
     },
+    '& .MuiSvgIcon-root': { fontSize: 16 },
+    '@media (min-width: 768px )': {
+      '& .MuiTypography-root.MuiFormControlLabel-label': {
+        fontSize: 16,
+      },
+
+    },
+
   }
 ));
 
@@ -34,21 +41,38 @@ export const TaskFormWrapper = styled(Box)({
 
 export const EditToDoItemIcon = styled(Edit)({
   color: 'lightgrey',
-  marginRight: '20px',
+  marginRight: '10px',
+  fontSize: '17px',
   '&:hover': {
     color: '#01579b',
     cursor: 'pointer',
+  },
+  '@media (min-width: 768px )': {
+    marginRight: '20px',
+    fontSize: '20px',
   },
 });
 
 export const CloseToDoItemIcon = styled(CloseIcon)({
   color: 'lightgrey',
+  fontSize: '17px',
   '&:hover': {
     color: '#01579b',
     cursor: 'pointer',
+  },
+  '@media (min-width: 768px )': {
+    fontSize: '20px',
   },
 });
 
 export const DateInformation = styled(Typography)({
   color: '#37474f',
+  '&.MuiTypography-root': {
+    fontSize: 10,
+  },
+  '@media (min-width: 768px )': {
+    '&.MuiTypography-root1': {
+      fontSize: 14,
+    },
+  },
 });

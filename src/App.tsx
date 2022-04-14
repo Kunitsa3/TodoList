@@ -1,14 +1,16 @@
 import { CssBaseline } from '@mui/material';
+import { createTaskInformation } from 'helpers';
 import { useEffect, useState } from 'react';
 
-import NewTaskField from 'components/NewTaskField';
-import ToDoList from 'components/ToDoList';
 import { TaskInformation } from 'types';
+import NewTaskField from './components/NewTaskField';
+import ToDoList from './components/ToDoList';
 import { ToDoListWrapper } from './styled';
 
 const App = () => {
   const [tasksInformation, setTasksInformation] = useState<TaskInformation[]>(
-    (JSON.parse(localStorage.getItem('tasksList')) as TaskInformation[])?.map(item => ({ ...item, date: new Date(item.date) })) || [],
+    (JSON.parse(localStorage.getItem('tasksList')) as TaskInformation[])
+      ?.map(item => ({ ...item, date: new Date(item.date) })) || [],
   );
 
   useEffect(() => {

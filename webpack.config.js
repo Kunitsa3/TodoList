@@ -11,6 +11,7 @@ module.exports = {
   output: { filename: '[contenthash].js', path: path.resolve(__dirname, 'dist') },
   resolve: {
     extensions: ['.js', '.jsx', '.tsx', '.ts'],
+    modules: [path.resolve(__dirname, './src'), path.resolve(__dirname, './node_modules')],
   },
   devServer: {
     port: 8000,
