@@ -38,6 +38,9 @@ const EditToDoItem: FC<EditToDoItemProps> = ({ editTask, setEditTask, setTasksLi
         size="small"
         value={editTask}
         onChange={onEditTaskChange}
+        inputProps={{
+          'data-testid': 'edit-task-input',
+        }}
       />
       <EditButtonsWrapper>
         <Button type="button" size="small" onClick={onSaveButtonClick}>
