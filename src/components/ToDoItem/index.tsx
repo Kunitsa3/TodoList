@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useCallback, memo } from 'react';
 import { Box } from '@mui/material';
 
 import { TaskInformation } from 'types';
@@ -14,9 +14,9 @@ const ToDoItem: FC<Props> = ({ setTasksList, taskInformation }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [editTask, setEditTask] = useState(taskInformation.task);
 
-  const changeEditState = () => {
-    setIsEdit(!isEdit);
-  };
+  const changeEditState = useCallback(() => {
+    setIsEdit(state => !state);
+  }, []);
 
   return (
     <Box>
@@ -39,4 +39,4 @@ const ToDoItem: FC<Props> = ({ setTasksList, taskInformation }) => {
   );
 };
 
-export default ToDoItem;
+export default memo(ToDoItem);

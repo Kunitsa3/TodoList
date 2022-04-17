@@ -10,7 +10,7 @@ interface EditToDoItemProps {
   setEditTask: React.Dispatch<React.SetStateAction<string>>;
   setTasksList: React.Dispatch<React.SetStateAction<TaskInformation[]>>;
   changeEditState: () => void;
-  id: number;
+  id: string;
 }
 
 const EditToDoItem: FC<EditToDoItemProps> = ({ editTask, setEditTask, setTasksList, changeEditState, id }) => {
@@ -23,7 +23,7 @@ const EditToDoItem: FC<EditToDoItemProps> = ({ editTask, setEditTask, setTasksLi
     setTasksList(oldTasksList =>
       oldTasksList.map(
         task =>
-          (task.id === id ? createTaskInformation(editTask) : task),
+          (task.id === id ? createTaskInformation(editTask, id) : task),
       ));
     changeEditState();
   };
@@ -38,6 +38,9 @@ const EditToDoItem: FC<EditToDoItemProps> = ({ editTask, setEditTask, setTasksLi
         size="small"
         value={editTask}
         onChange={onEditTaskChange}
+        inputProps={{
+          'data-testid': 'edit-task-input',
+        }}
       />
       <EditButtonsWrapper>
         <Button type="button" size="small" onClick={onSaveButtonClick}>

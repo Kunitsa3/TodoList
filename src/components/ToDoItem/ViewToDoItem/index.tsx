@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo, useCallback } from 'react';
 import { Box, Checkbox, FormGroup } from '@mui/material';
 
 import { TaskInformation } from 'types';
@@ -20,11 +20,12 @@ interface ViewToDoItemProps {
 
 const ViewToDoItem: FC<ViewToDoItemProps> =
  ({ changeEditState, setTasksList, taskInformation: { task, id, date, isChecked } }) => {
-   const handleChange: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void = (_, checked) => {
-     setTasksList(oldTasksList => oldTasksList.map(
-       taskDetails => (taskDetails.id === id ? { ...taskDetails, isChecked: checked } : taskDetails),
-     ));
-   };
+   const handleChange: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void =
+    useCallback((_, checked) => {
+      setTasksList(oldTasksList => oldTasksList.map(
+        taskDetails => (taskDetails.id === id ? { ...taskDetails, isChecked: checked } : taskDetails),
+      ));
+    }, []);
 
    const onDeleteIconClick = () => {
      setTasksList(oldTasksList => oldTasksList.filter(taskDetails => taskDetails.id !== id));
@@ -57,4 +58,4 @@ const ViewToDoItem: FC<ViewToDoItemProps> =
    );
  };
 
-export default ViewToDoItem;
+export default memo(ViewToDoItem);

@@ -1,6 +1,6 @@
 export interface TaskInformation {
   task: string;
-  id: number;
+  id: string;
   isChecked: boolean;
   date: Date;
 }
