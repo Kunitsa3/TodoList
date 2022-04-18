@@ -11,9 +11,7 @@ interface Props {
 }
 
 const ToDoItem: FC<Props> = ({ setTasksList, taskInformation }) => {
-  const [isEdit, setIsEdit] = useState(false);
-  const [editTask, setEditTask] = useState(taskInformation.task);
-
+  const [isEdit, setIsEdit] = useState<boolean>(false);
   const changeEditState = useCallback(() => {
     setIsEdit(state => !state);
   }, []);
@@ -28,11 +26,10 @@ const ToDoItem: FC<Props> = ({ setTasksList, taskInformation }) => {
         />
       ) : (
         <EditToDoItem
-          editTask={editTask}
-          setEditTask={setEditTask}
           setTasksList={setTasksList}
           changeEditState={changeEditState}
           id={taskInformation.id}
+          task={taskInformation.task}
         />
       )}
     </Box>

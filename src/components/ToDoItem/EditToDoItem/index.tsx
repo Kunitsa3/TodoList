@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Button } from '@mui/material';
 
 import { TaskInformation } from 'types';
@@ -6,14 +6,15 @@ import { createTaskInformation } from 'helpers';
 import { EditButtonsWrapper, EditTaskFieldWrapper, EditTaskInput } from './styled';
 
 interface EditToDoItemProps {
-  editTask: string;
-  setEditTask: React.Dispatch<React.SetStateAction<string>>;
   setTasksList: React.Dispatch<React.SetStateAction<TaskInformation[]>>;
   changeEditState: () => void;
   id: string;
+  task: string;
 }
 
-const EditToDoItem: FC<EditToDoItemProps> = ({ editTask, setEditTask, setTasksList, changeEditState, id }) => {
+const EditToDoItem: FC<EditToDoItemProps> = ({ setTasksList, changeEditState, id, task }) => {
+  const [editTask, setEditTask] = useState(task);
+
   const onEditTaskChange: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement> =
    ({ target: { value } }) => {
      setEditTask(value);

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import NewTaskField from '../../components/NewTaskField';
+import NewTaskField from '../../src/components/NewTaskField';
 
 test('renders an input with a label "Add new task"', () => {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
