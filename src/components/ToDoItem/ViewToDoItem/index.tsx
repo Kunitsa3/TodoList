@@ -53,7 +53,12 @@ const ViewToDoItem: FC<ViewToDoItemProps> =
 
        </TaskFormWrapper>
 
-       <DateInformation>{getDate(date)}</DateInformation>
+       <DateInformation
+         data-testid="item-date"
+       >
+         {getDate(date)}
+
+       </DateInformation>
      </TaskDetailsWrapper>
    );
  };

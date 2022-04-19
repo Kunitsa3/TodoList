@@ -23,8 +23,8 @@ const EditToDoItem: FC<EditToDoItemProps> = ({ setTasksList, changeEditState, id
   const onSaveButtonClick: React.MouseEventHandler<HTMLButtonElement> = () => {
     setTasksList(oldTasksList =>
       oldTasksList.map(
-        task =>
-          (task.id === id ? createTaskInformation(editTask, id) : task),
+        taskItem =>
+          (taskItem.id === id ? createTaskInformation(editTask, id) : taskItem),
       ));
     changeEditState();
   };
