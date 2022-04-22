@@ -1,6 +1,7 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -18,7 +19,9 @@ module.exports = {
     hot: isDev,
     historyApiFallback: true,
   },
-  plugins: [new HTMLWebpackPlugin({ template: './index.html', filename: 'index.html' }), new CleanWebpackPlugin()],
+  plugins: [new HTMLWebpackPlugin({ template: './index.html', filename: 'index.html' }),
+    new CleanWebpackPlugin(),
+    new BundleAnalyzerPlugin()],
   module: {
     rules: [
       { test: /\.ttf$/, type: 'asset/resource' },
