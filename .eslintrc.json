@@ -3,7 +3,12 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["plugin:react/recommended", "airbnb"],
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -17,15 +22,31 @@
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
-    "linebreak-style": ["error", "windows"],
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "arrow-parens": ["error", "as-needed"],
+    "max-len": ["error", 120],
+    "implicit-arrow-linebreak": "off",
+    "no-confusing-arrow": ["error", { "allowParens": true, "onlyOneSimpleParam": true }],
+    "object-curly-newline": ["error", { "consistent": true, "multiline": true }],
+    "function-paren-newline": ["error", "multiline-arguments"],
+    "no-plusplus": "off",
+    "operator-linebreak": [2, "after"],
+    "import/prefer-default-export": "off"
   },
   "settings": {
     "import/resolver": {
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"],
         "path": ["src"]
-      }
+      },
+      "typescript": {}
     }
   }
 }
